@@ -1,0 +1,28 @@
+import { useMemo } from "react"
+import { useLocation, useNavigate, useSearchParams as useRRSearchParams } from "react-router-dom"
+
+export function useRouter() {
+  const navigate = useNavigate()
+
+  return useMemo(
+    () => ({
+      push: (href: string) => navigate(href),
+      replace: (href: string) => navigate(href, { replace: true }),
+      back: () => window.history.back(),
+      forward: () => window.history.forward(),
+      refresh: () => window.location.reload(),
+      prefetch: async (_href: string) => Promise.resolve(),
+    }),
+    [navigate],
+  )
+}
+
+export function usePathname() {
+  const location = useLocation()
+  return location.pathname
+}
+
+export function useSearchParams() {
+  const [params] = useRRSearchParams()
+  return params
+}

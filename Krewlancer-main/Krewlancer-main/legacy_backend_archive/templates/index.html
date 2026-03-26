@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop" alt="Hero"
+        class="hero-bg">
+
+    <div class="hero-content">
+        <p class="hero-subtitle">Fall Winter 2025</p>
+
+        <div class="hero-title">
+            <span>ETHEREAL</span>
+            <span class="italic">SHADOWS</span>
+        </div>
+
+        <div class="hero-cta">
+            <a href="/shop" class="btn">View The Lookbook</a>
+        </div>
+    </div>
+
+    <div style="position: absolute; bottom: 40px; left: 40px; display: none;">
+        <p
+            style="font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; max-width: 130px;">
+            Designed in Paris.<br>
+            Crafted in Milan.<br>
+            Worn in Darkness.
+        </p>
+    </div>
+</section>
+
+<!-- MANIFESTO SECTION -->
+<section class="manifesto-section">
+    <p class="manifesto-text">
+        We believe in the quiet power of silence. In a world of noise, krewlancer is the absence of it.
+        We strip away the unnecessary to reveal the essential structure of the human form.
+        This is not just clothing; this is architecture for the soul.
+    </p>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section class="products-section" style="padding-bottom: 0;">
+    <div class="products-header">
+        <h2>Collections</h2>
+        <p>Explore by category</p>
+    </div>
+    <div class="products-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="product-card" onclick="window.location.href='/shop?gender=Men'">
+            <div class="product-image" style="height: 500px;">
+                <img src="/static/images/charcoal-grey-wool-trousers-on-model-minimal.jpg" alt="Men's Collection">
+                <div
+                    style="position: absolute; bottom: 40px; left: 40px; color: white; font-size: 2.5rem; font-weight: 300; text-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                    MEN<br><span style="font-size: 1.2rem; letter-spacing: 0.2em;">COLLECTION</span></div>
+            </div>
+        </div>
+        <div class="product-card" onclick="window.location.href='/shop?gender=Women'">
+            <div class="product-image" style="height: 500px;">
+                <img src="/static/images/minimal-beige-cashmere-sweater-on-model.jpg" alt="Women's Collection">
+                <div
+                    style="position: absolute; bottom: 40px; left: 40px; color: white; font-size: 2.5rem; font-weight: 300; text-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                    WOMEN<br><span style="font-size: 1.2rem; letter-spacing: 0.2em;">COLLECTION</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-section">
+    <div class="products-header">
+        <h2>Featured Collection</h2>
+        <p>Carefully curated pieces for the discerning individual</p>
+    </div>
+
+    <div class="products-grid" id="featured-products">
+        <!-- Products loaded by JavaScript -->
+    </div>
+
+    <div style="text-align: center;">
+        <a href="/shop" class="btn">View All Products</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    async function loadFeaturedProducts() {
+        try {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+            const featured = products.filter(p => p.featured).slice(0, 4);
+
+            const grid = document.getElementById('featured-products');
+            grid.innerHTML = featured.map(product => `
+                <div class="product-card" onclick="window.location.href='/product/${product.id}'">
+                    <div class="product-image">
+                        <img src="/static/images/${product.images?.[0] || 'placeholder.svg'}" 
+                             alt="${product.name}" 
+                             onerror="this.src='/static/images/placeholder.svg'">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="product-price">$${product.price}</div>
+                        ${product.bestseller ? '<span class="product-badge">Bestseller</span>' : ''}
+                        ${product.newArrival ? '<span class="product-badge">New</span>' : ''}
+                        <div class="product-category">${product.category}</div>
+                    </div>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.log("[v0] Error loading featured products:", error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFeaturedProducts);
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}krewlancer - Premium Clothing{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/"><img src="/logo/krewlancer_logo.png" alt="krewlancer" style="height: 40px; width: 220px; object-fit: contain; margin-left: 10px;" /></a>
+            </div>
+            <nav class="main-nav">
+                <a href="/shop">Shop</a>
+                <a href="/collections">Collections</a>
+                <a href="/account">Account</a>
+                <a href="/cart" class="cart-link">Cart <span class="cart-count">0</span></a>
+            </nav>
+            <div class="auth-links">
+                <span id="user-name" style="display: none;"></span>
+                <a href="/login" id="login-link">Login</a>
+                <button id="logout-btn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <div id="toast-container" class="toast-notification"></div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>krewlancer crafts timeless, minimal clothing for the discerning individual.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 krewlancer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/cart.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

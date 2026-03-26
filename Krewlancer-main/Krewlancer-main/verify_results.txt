@@ -1,0 +1,9 @@
+MySQL Tables Created/Verified
+------------------------------
+Table           | Mongo   | MySQL  
+------------------------------
+Categories      | 10      | 10     
+Products        | 13      | 13     
+Users           | 9       | 9      
+Orders          | 6       | 6      
+------------------------------

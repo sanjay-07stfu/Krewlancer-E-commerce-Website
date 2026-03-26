@@ -1,0 +1,21 @@
+import type React from "react"
+import { Link as RouterLink } from "react-router-dom"
+import { forwardRef } from "react"
+
+type Props = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
+  href: string
+  replace?: boolean
+}
+
+const Link = forwardRef<HTMLAnchorElement, Props>(function Link(
+  { href, children, replace, ...rest },
+  ref,
+) {
+  return (
+    <RouterLink to={href} replace={replace} {...rest} ref={ref}>
+      {children}
+    </RouterLink>
+  )
+})
+
+export default Link

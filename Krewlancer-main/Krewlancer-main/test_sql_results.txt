@@ -1,0 +1,10 @@
+MySQL Tables Created/Verified
+--- Testing MySQL Functionality ---
+Query Products: Found 13 products.
+Sample Product: Essential Cashmere Sweater, Price: 295.0, Images: <class 'list'>
+Query Categories: Found 10 categories.
+Sample Category: Knitwear, Subcategories: <class 'list'>
+Query Users: Found 9 users.
+Sample User: shreyas@example.com, Admin: False
+Successfully added a product to MySQL.
+Successfully deleted the test product from MySQL.

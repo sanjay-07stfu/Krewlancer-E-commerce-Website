@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; padding: 40px; border: 1px solid #eeeeee; }
+        .header { margin-bottom: 30px; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px; }
+        .header h1 { font-family: 'Georgia', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.1em; color: #1a1a1a; margin: 0; }
+        .title { font-size: 24px; font-weight: bold; color: #000; margin-bottom: 20px; }
+        .message { color: #444; line-height: 1.6; font-size: 15px; margin-bottom: 30px; }
+        .details-box { background-color: #fcfcfc; border: 1px border #f0f0f0; padding: 25px; margin-bottom: 30px; }
+        .detail-item { margin-bottom: 12px; font-size: 14px; }
+        .detail-label { font-weight: bold; color: #666; width: 140px; display: inline-block; }
+        .detail-value { color: #1a1a1a; }
+        .button-wrapper { text-align: center; margin-bottom: 30px; }
+        .button { display: inline-block; padding: 16px 40px; background-color: #000; color: #fff !important; text-decoration: none; font-size: 13px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; }
+        .timestamp { font-size: 11px; color: #999; text-align: center; border-top: 1px solid #f0f0f0; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>krewlancer</h1>
+        </div>
+        
+        <div class="title">🆕 New Product Added!</div>
+        
+        <div class="message">
+            Hi {{ user_name }},<br>
+            We’ve just added a new product to our store:
+        </div>
+        
+        <div class="details-box">
+            <div class="detail-item">
+                <span class="detail-label">Product Name:</span>
+                <span class="detail-value">{{ product_name }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Price:</span>
+                <span class="detail-value">₹{{ product_price }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Category:</span>
+                <span class="detail-value">{{ category }}</span>
+            </div>
+            <div class="detail-item" style="margin-bottom: 0;">
+                <span class="detail-label">Short Description:</span>
+                <div style="margin-top: 5px; color: #666;">{{ description }}</div>
+            </div>
+        </div>
+        
+        <div class="message">
+            👉 Tap below to view the product.
+        </div>
+        
+        <div class="button-wrapper">
+            <a href="http://localhost:3000/product/{{ product_id }}" class="button">View Product</a>
+        </div>
+        
+        <div class="timestamp">
+            {{ timestamp }}
+        </div>
+    </div>
+</body>
+</html>

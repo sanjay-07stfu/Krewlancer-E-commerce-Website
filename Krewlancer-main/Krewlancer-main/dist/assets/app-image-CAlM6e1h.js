@@ -1,0 +1,1 @@
+import{r as m,j as g}from"./index-d9Ao6kIF.js";const c=m.forwardRef(function({fill:e,style:t,className:o,alt:r,src:s,...a},i){const n=e?{position:"absolute",inset:0,width:"100%",height:"100%",...t||{}}:t;return g.jsx("img",{ref:i,src:s,alt:r||"",className:o,style:n,...a})});export{c as I};

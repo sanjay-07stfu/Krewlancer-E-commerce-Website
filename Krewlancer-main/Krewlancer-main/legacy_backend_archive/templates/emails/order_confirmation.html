@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 40px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: #000;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .content {
+            color: #333;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .order-table th {
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #999;
+            padding-bottom: 10px;
+        }
+
+        .order-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+            padding-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>krewlancer</h1>
+        </div>
+        <div class="content">
+            <p>Thank you for your order.</p>
+            <p>Your order <strong>{{ order_id }}</strong> has been received and is being processed. We will notify you
+                once your items have shipped.</p>
+
+            <h3>Order Details</h3>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }} ({{ item.size }})</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>₹{{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="total">
+                Total: ₹{{ total }}
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2025 krewlancer. All rights reserved.<br>
+            Architecture for the soul.
+        </div>
+    </div>
+</body>
+
+</html>
